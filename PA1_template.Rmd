@@ -36,7 +36,7 @@ head(activity_steps_day)
 ###2. Histogram of the total number of steps taken each day.
 
 ```{r}
-hist(activity_steps_day$steps, xlab = "Steps per Day", main = "Total number of steps taken per  day", col = "gray")
+hist(activity_steps_day$steps, xlab = "Steps per Day", main = "Total number of steps taken per  day", col = "blue")
 ```
 
 ###3. Mean and median of the total number of steps taken per day
@@ -95,8 +95,8 @@ which corresponds to interval `r head(max_interval)`
 missing_values <- subset(activity, is.na(steps))
 #plot repartition, by date or by intervals
 par(mfrow = c(2,1), mar = c(2, 2, 1, 1))
-hist(missing_values$interval, main="NAs repartition per interval")
-hist(as.numeric(missing_values$date), main = "NAs repartion per date", breaks = 61)
+hist(missing_values$interval, main="NAs repartition per interval", col = "blue")
+hist(as.numeric(missing_values$date), main = "NAs repartion per date", breaks = 61, col = "blue")
 ```
 
   We see that NAs run equally over all intervals. On the other hand, checking with dates, we see all NA's are spread between 8 specific days only. To reduce that effect, best will be to take the mean for missing interval across all the days in the dataset.
