@@ -1,12 +1,24 @@
 ---
+output: 
+  html_document: 
+    keep_md: yes
+---
+```{r}
+my_render <- function(PA1_template.Rmd, encoding) {
+    rmarkdown::render(PA1_template.Rmd, clean = FALSE, encoding = encoding)
+}
+```
+---
 title: "PA1_template.Rmd"
 author: "Girish Desai"
 date: "April 22, 2018"
-output: html_document
+output: html_fragment
 ---
 #Loading and preprocessing the data
 
-```{r setup, include=FALSE}
+```{r}
+setwd("C:/Users/t15cgvz/Desktop/R/ReproducibleResearch")
+path <- getwd()
 rm(list=ls())
 activity <- read.csv("activity.csv")
 ###Processing the Data
@@ -17,12 +29,14 @@ summary(activity)
 str(activity)
 ```
 Inspect the dataset
-```{r} 
+```{r echo = FALSE} 
 summary(activity)
 ```
 ```{r} 
 str(activity)
 ```
+knit("PA1_template.Rmd")
+markdownToHTML('PA1_template.md', 'PA1_template.html', options=c("use_xhml"))
 
 #What is mean total number of steps taken per day?
 
@@ -166,9 +180,5 @@ activity$day=factor(activity$day,levels=c("weekday","weekend"))
 stepsInterval2=aggregate(steps~interval+day,activity,mean)
 library(lattice)
 xyplot(steps~interval|factor(day),data=stepsInterval2,aspect=1/2,type="l")
+
 ```
-
-
-
-
-
